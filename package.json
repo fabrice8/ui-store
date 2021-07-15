@@ -1,0 +1,26 @@
+{
+  "name": "ui-store",
+  "version": "1.0.0",
+  "description": "Easy interact with browser storages: LocalStorage, SessionStorage, ...",
+  "main": "ui-store.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrice8/ui-store.git"
+  },
+  "keywords": [
+    "browser",
+    "storage",
+    "ui-store",
+    "localstorage",
+    "sessionstorage"
+  ],
+  "author": "Fabrice Marlboro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabrice8/ui-store/issues"
+  },
+  "homepage": "https://github.com/fabrice8/ui-store#readme"
+}
