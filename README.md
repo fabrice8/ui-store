@@ -43,11 +43,11 @@ $ npm install @fabrice8/ui-store
 then import it into your code
 
 ```javascript
-const UIStore = require('ui-store');
+const UIStore = require('@fabrice8/ui-store');
 
 // or 
 
-import uiStore from 'ui-store'; // ESM
+import uiStore from '@fabrice8/ui-store'; // ESM
 ```
 
 Via HTML `<script>` tag. Download the `ui-store.js` or `ui-store.min.js` into your project.
