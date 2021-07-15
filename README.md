@@ -12,7 +12,7 @@ Environments in which to use UI-Store
 [![npm version][npm-badge]][npm]
 
 [npm]: https://www.npmjs.org/package/ui-store
-[npm-badge]: https://img.shields.io/npm/v/ui-store.svg?style=flat-square
+[npm-badge]: https://img.shields.io/npm/v/@fabrice8/ui-store.svg?style=flat-square
 
 
 ## Goals
@@ -38,7 +38,7 @@ After building couple of Single Page Applications, I developed requirements and 
 Install using npm:
 
 ```shell
-$ npm install ui-store
+$ npm install @fabrice8/ui-store
 ```
 then import it into your code
 

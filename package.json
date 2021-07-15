@@ -1,5 +1,5 @@
 {
-  "name": "ui-store",
+  "name": "@fabrice8/ui-store",
   "version": "1.0.0",
   "description": "Easy interact with browser storages: LocalStorage, SessionStorage, ...",
   "main": "ui-store.js",
