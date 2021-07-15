@@ -8,6 +8,7 @@
 */
 ( function(){
 	'use strict';
+	
 	let
 	StoreManager,
 	is_storable
