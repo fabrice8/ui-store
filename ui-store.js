@@ -1,6 +1,6 @@
 /** User-Interface Storage Manager
  * 
- * @Version: 1.0.0
+ * @Version: 1.0.3
  * @Author: Fabrice Marlboro
  * @Created: 16/05/2020
  * @repository: https://github.com/fabrice8/ui-store
@@ -8,6 +8,7 @@
 */
 ( function(){
 	'use strict';
+	const Global = window || global
 	
 	let
 	StoreManager,
@@ -32,7 +33,7 @@
 									StoreManager = new InMemory
 						break
 
-				default: is_storable = ( StoreManager = window.localStorage ) !== undefined
+				default: is_storable = ( StoreManager = Global.localStorage ) !== undefined
 			}
 		}
 		catch( error ){ is_storable = false }
@@ -101,7 +102,7 @@
 			return result
 		}
 
-	    this.set = function( attribute, value ){
+	  this.set = function( attribute, value ){
 
 			if( !attribute || !value || !is_storable ) return false
 
@@ -113,7 +114,7 @@
 			return true
 		}
 
-	    this.temp = function( attribute, value ){
+	  this.temp = function( attribute, value ){
 
 			if( !attribute || !value || !is_storable ) return false
 
@@ -121,11 +122,10 @@
 
 			// Keep-record to delete it once it's get
 			this.update( '--Flashes--', true, attribute )
+			return true
+		}
 
-        	return true
-      	}
-
-	    this.get = function( attribute, data ){
+		this.get = function( attribute, data ){
 
 			if( !attribute || !is_storable ) return false
 			if( !( data = StoreManager.getItem( _prefix + _encode( attribute ) ) ) ) return false
@@ -156,11 +156,21 @@
 
 			try {
 				item = JSON.parse( item )
+				
+				if( Array.isArray( item ) ){
+					// update array: push, shift, unshift, pop, ...
+					if( !['delete', 'remove'].includes( action ) )
+						item[ action ]( data )
 
-				// update array: push, shift, unshift, pop, ...
-				if( Array.isArray( item ) )
-					item[ action ]( data )
-
+					// Delete or Remove item from array
+					else 
+						item.map( ( each, index ) => {
+							if( ( typeof data == 'string' && each == data )
+									|| ( Array.isArray( data ) && data.includes( each ) ) )
+								item.splice( index, 1 )
+						} )
+				}
+				
 				// Update by "add, delete or update" a set or multiple sets of object
 				else {
 					// Adding
@@ -190,12 +200,12 @@
 				this.set( attribute, item )
 				return true
 			}
-        	catch( err ){ return false }
-    	}
+      catch( err ){ return false }
+    }
 
-	    this.clear = function( attribute, Flashes ){
+		this.clear = function( attribute, Flashes ){
 
-        	if( !attribute || !is_storable ) return false
+			if( !attribute || !is_storable ) return false
 
 			Flashes = Flashes || JSON.parse( _decode( StoreManager.getItem( _prefix + _encode('--Flashes--') ) ) )
 
@@ -216,7 +226,7 @@
 			return true
 		}
 
-	    this.flush = function( prefix ){
+	  this.flush = function( prefix ){
 			// Delete all data saved on a specific prefix
 			if( !is_storable ) return false
 
@@ -255,16 +265,16 @@
 			// the DOM once they got stored
 			if( _this[ type ]( name, value ) )
 				$this.removeAttr('data-store')
-					.removeAttr('data-store-type')
-					.removeAttr('data-store-value')
+							.removeAttr('data-store-type')
+							.removeAttr('data-store-value')
 		} )
 	}
 
 	function InMemory(){
 		// Use window in Browser & global in Nodejs
-		( window || global ).UIInMemoryStore = {}
+		Global.UIInMemoryStore = {}
 
-		this.Storage = window.UIInMemoryStore
+		this.Storage = Global.UIInMemoryStore
 
 		this.setItem = function( key, value ){ this.Storage[ key ] = value }
 		this.getItem = function( key ){ return this.Storage[ key ] }
@@ -274,11 +284,11 @@
 	/* Clean window In-memory leaks when it's
 		use previously to store data
 	*/
-	window.UIInMemoryStore = null
+	Global.UIInMemoryStore = null
 
-	// exportation du module dans l'object Global
+	// Export UIStore to the environment's global object
 	typeof module !== 'undefined'
 	&& module.exports ?
 				module.exports = UIStore
-				: window.UIStore = UIStore
+				: Global.UIStore = UIStore
 } )()
