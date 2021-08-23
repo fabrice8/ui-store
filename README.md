@@ -53,7 +53,7 @@ import uiStore from '@fabrice8/ui-store'; // ESM
 Via HTML `<script>` tag with the CDN source:
 
 ```HTML
-<script src="https://cdn.jsdelivr.net/npm/@fabrice8/ui-store@1.0.3/" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fabrice8/ui-store@1.0.3/ui-store.min.js" type="text/javascript"></script>
 ```
 
 Or download the `ui-store.js` or `ui-store.min.js` into your project.
