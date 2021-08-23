@@ -10,9 +10,11 @@ Environments in which to use UI-Store
 - Node, and other non-browser environments.
 
 [![npm version][npm-badge]][npm]
+[![Rate on Openbase](https://badges.openbase.com/js/rating/@fabrice8/ui-store.svg)](https://openbase.com/js/@fabrice8/ui-store?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
 
 [npm]: https://www.npmjs.org/package/ui-store
 [npm-badge]: https://img.shields.io/npm/v/@fabrice8/ui-store.svg?style=flat-square
+
 
 
 ## Goals
