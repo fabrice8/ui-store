@@ -56,7 +56,7 @@ Via HTML `<script>` tag with the CDN source:
 <script src="https://cdn.jsdelivr.net/npm/@fabrice8/ui-store@1.0.3/ui-store.min.js" type="text/javascript"></script>
 ```
 
-Or download the `ui-store.js` or `ui-store.min.js` into your project.
+Or download `ui-store.js` or `ui-store.min.js` files from the repository into your project.
 
 ```HTML
 <script src="/ui-store.min.js" type="text/javascript"></script>
@@ -179,7 +179,7 @@ uistore.clear([ 'greeting', 'attr' ]);
 
 ### `flush([prefix])`
 
-Clear all stored set with the attribute prefix specify in the options.
+Clear all stored set with the attribute prefix specify in the options. *Most important use case of the prefix*
 
 ```javascript
 uistore.flush('my_');
